@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ShopLive-Plugin-Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,shrink-to-fit=no">
+
+        <style>
+        /*div {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}*/
+        /*div { height: 100vh; }*/
+        /*div { height: 100vh; width: 100vw; }*/
+        </style>
+
+        <script>
+        window.onload=function(){
+            var PLAYER_ID = "shopLiveArea";
+            var JWT_OR_USER_INFO = null; 
+            var ACCESS_KEY = "gUT739jb4RxxSw4KV7Yj";
+            var CAMPAIGN_KEY = "a45db96a7ed8";
+            var SHARE_URL = "https://mbp.hanabank.com/oneqplus.jsp";
+
+            var messageCallback = {
+                REQUEST_LOGIN: function() {
+                alert("Login is required");
+                },
+
+                CLICK_PRODUCT: function(payload) {
+                // Do something when user clicks the product
+                // For example,
+                // Adding parameter to the product URL and open the URL
+                // var url = payload.url + '&parameter=' + '{your_parameter}'
+                // location.href = url;
+                alert("CLICK_PRODUCT");
+                }   
+            };
+
+            var options = {
+                messageCallback: messageCallback,
+                shareUrl: SHARE_URL,
+                isFullScreen: true,
+                isContainerFit: true,
+                //ui: {
+                //    shareButton: true,
+                //    backButton: true,
+                //},
+                hideControls: true,
+                hasNoAddressBar: true,
+            };
+
+            (function (s,h,o,p,l,i,v,e) {s["ShoplivePlayer"]=l;(s[l]=s[l]||function(){
+            (s[l].q=s[l].q||[]).push(arguments);}),(i=h.createElement(o)),
+            (v=h.getElementsByTagName(o)[0]);i.async=1;i.src=p;v.parentNode.insertBefore(i,v);
+            })(window,document,"script","https://static.shoplive.cloud/live.js","mplayer");
+            
+            mplayer("init", ACCESS_KEY, CAMPAIGN_KEY, JWT_OR_USER_INFO, options);
+            mplayer("run", PLAYER_ID);
+        }
+        </script>
+        
+    </head>
+    <body>
+        <div id="shopLiveArea"></div>
+    </body>
+</html>
